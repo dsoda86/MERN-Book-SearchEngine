@@ -1,1 +1,20 @@
-const { gql } = require('apollo-server-express');
+import { gql } from '@apollo/client';
+
+export const GET_ME = gql`
+  {
+    me {
+      _id
+      username
+      email
+      bookCount
+      savedBooks {
+        bookId
+        authors
+        description
+        title
+        image
+        link
+      }
+    }
+  }
+`;
