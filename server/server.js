@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
-
+const { authMiddleware } = require('./utils/auth');
 // Following examples from mini-project
 // Import the ApolloServer class
 const { ApolloServer } = require('apollo-server-express');
@@ -9,7 +9,6 @@ const { ApolloServer } = require('apollo-server-express');
 // Import the two parts of a GraphQL schema
 const { typeDefs, resolvers } = require('./schemas');
 
-const db = require('./config/connection');
 const app = express();
 const server = new ApolloServer({
   typeDefs,
@@ -43,4 +42,4 @@ const startApolloServer = async (typeDefs, resolvers) => {
   })
   };
 
-  startApolloServer();
+  startApolloServer(typeDefs, resolvers);
